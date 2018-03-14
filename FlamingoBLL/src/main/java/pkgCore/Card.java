@@ -1,7 +1,7 @@
 package pkgCore;
 
 import pkgEnum.*;
-
+//Ben is making sure he can git good
 public class Card implements Comparable {
 
 	private eSuit eSuit;
