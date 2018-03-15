@@ -50,7 +50,7 @@ public class HandPoker extends Hand {
 		return bisStraightFlush;
 	}
 	
-	// TODO : Implement this method
+	// DONE : Implement this method
 	public boolean isFourOfAKind() {
 		boolean bisFourOfAKind = false;
 		if (this.getCRC().size() == 4) {
@@ -62,6 +62,7 @@ public class HandPoker extends Hand {
 				HSP.setLoCard(null);
 				HSP.setKickers(FindTheKickers(this.getCRC()));
 				this.setHS(HSP);
+				bisFourOfAKind = true;
 			}
 		}
 		return bisFourOfAKind;
@@ -117,6 +118,7 @@ public class HandPoker extends Hand {
 				HSP.setLoCard(null);
 				HSP.setKickers(FindTheKickers(this.getCRC()));
 				this.setHS(HSP);
+				bisThreeOfAKind = true;
 			}
 		}
 		return bisThreeOfAKind;
@@ -130,7 +132,7 @@ public class HandPoker extends Hand {
 
 	public boolean isPair() {
 		boolean bisPair = false;
-		// TODO : Implement this method
+		// DONE : Implement this method
 		if (this.getCRC().size() == 2) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
