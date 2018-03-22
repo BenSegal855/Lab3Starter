@@ -117,6 +117,7 @@ public class HandPoker extends Hand {
 				HSP.setLoCard(null);
 				HSP.setKickers(FindTheKickers(this.getCRC()));
 				this.setHS(HSP);
+				bisThreeOfAKind = true;
 			}
 		}
 		return bisThreeOfAKind;
@@ -140,6 +141,7 @@ public class HandPoker extends Hand {
 				HSP.setLoCard(null);
 				HSP.setKickers(FindTheKickers(this.getCRC()));
 				this.setHS(HSP);
+				bisPair = true;
 			}
 		}
 		return bisPair;
@@ -148,6 +150,18 @@ public class HandPoker extends Hand {
 	public boolean isHighCard() {
 		boolean bisHighCard = false;
 		// TODO : Implement this method
+		if (this.getCRC().size() == 1) {
+			if (this.getCRC().get(0).getiCnt() == Constants.ONE_OF_A_KIND) {
+				HandScorePoker HSP = (HandScorePoker) this.getHS();
+				HSP.seteHandStrength(eHandStrength.Pair);
+				int iGetCard = this.getCRC().get(0).getiCardPosition();
+				HSP.setHiCard(this.getCards().get(iGetCard));
+				HSP.setLoCard(null);
+				HSP.setKickers(FindTheKickers(this.getCRC()));
+				this.setHS(HSP);
+				bisHighCard = true;
+			}
+		}
 		return bisHighCard;
 	}
 
