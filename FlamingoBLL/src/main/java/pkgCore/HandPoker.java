@@ -134,7 +134,7 @@ public class HandPoker extends Hand {
 		boolean bisTwoPair = false;
 		if (this.getCRC().size() == 2) 
 		{
-			if (this.getCRC().get(0).getiCnt() == ) {
+			if (this.getCRC().get(0).getiCnt() == 2) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
 				HSP.seteHandStrength(eHandStrength.TwoPair);
 				int iGetCard = this.getCRC().get(0).getiCardPosition();
@@ -144,6 +144,7 @@ public class HandPoker extends Hand {
 				this.setHS(HSP);
 			}
 		}
+		
 		// TODO : Implement this method
 		return bisTwoPair;
 	}
