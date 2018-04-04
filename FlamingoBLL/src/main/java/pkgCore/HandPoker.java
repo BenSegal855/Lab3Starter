@@ -105,7 +105,7 @@ public class HandPoker extends Hand {
 		
 		for(; i <super.getCards().size()-1; i++)
 		{
-			if(super.getCards().get(i).geteRank().getiCardValue() - 1 != super.getCards().get(i+1).geteRank().getiCardValue())//TODO:lookup Burt's code and check this
+			if(super.getCards().get(i).geteRank().getiCardValue() - 1 != super.getCards().get(i+1).geteRank().getiCardValue())
 			{
 				bisStraight = false;
 				break;
