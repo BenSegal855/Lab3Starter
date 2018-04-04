@@ -39,15 +39,11 @@ public class HandPoker extends Hand {
 	}
 
 	public boolean isRoyalFlush() {
-		boolean bIsRoyalFlush = false;
-		// TODO : Implement this method
-		return bIsRoyalFlush;
+		return this.isStraightFlush() && super.getCards().get(0).geteRank() == eRank.ACE && super.getCards().get(1).geteRank() == eRank.KING;
 	}
 
 	public boolean isStraightFlush() {
-		boolean bisStraightFlush = false;
-		// TODO : Implement this method
-		return bisStraightFlush;
+		return this.isFlush() && this.isStraight();
 	}
 	
 	// TODO : Implement this method
@@ -99,8 +95,23 @@ public class HandPoker extends Hand {
 	}
 
 	public boolean isStraight() {
-		boolean bisStraight = false;
-		// TODO : Implement this method
+		boolean bisStraight = true;
+		int i = 0;
+		
+		if(super.getCards().get(0).geteRank() == eRank.ACE && super.getCards().get(1).geteRank() == eRank.FIVE)
+		{
+			i++;
+		}
+		
+		for(; i <super.getCards().size()-1; i++)
+		{
+			if(super.getCards().get(i).geteRank().getiCardValue() - 1 != super.getCards().get(i+1).geteRank().getiCardValue())//TODO:lookup Burt's code and check this
+			{
+				bisStraight = false;
+				break;
+			}
+				
+		}
 		return bisStraight;
 	}
 
