@@ -40,17 +40,17 @@ public class HandPoker extends Hand {
 
 	public boolean isRoyalFlush() {
 		boolean bIsRoyalFlush = false;
-		// TODO : Implement this method
+		// DONE in Master : Implement this method
 		return bIsRoyalFlush;
 	}
 
 	public boolean isStraightFlush() {
 		boolean bisStraightFlush = false;
-		// TODO : Implement this method
+		//  : DONE in Master Implement this method
 		return bisStraightFlush;
 	}
 	
-	// TODO : Implement this method
+	// DONE in Master : Implement this method
 	public boolean isFourOfAKind() {
 		boolean bisFourOfAKind = false;
 		if (this.getCRC().size() == 4) {
@@ -70,7 +70,8 @@ public class HandPoker extends Hand {
 	// TODO : Implement this method
 	public boolean isFullHouse() {
 		boolean bisFullHouse = false;
-		return bisFullHouse;
+		
+		return ( (isThreeOfAKind() && isPair())); 
 
 	}
 
@@ -100,7 +101,7 @@ public class HandPoker extends Hand {
 
 	public boolean isStraight() {
 		boolean bisStraight = false;
-		// TODO : Implement this method
+		// DONE in Master : Implement this method
 		return bisStraight;
 	}
 
