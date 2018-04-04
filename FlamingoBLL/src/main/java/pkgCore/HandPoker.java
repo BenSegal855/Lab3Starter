@@ -21,7 +21,7 @@ public class HandPoker extends Hand {
 	}
 
 	@Override
-	public HandScore ScoreHand() {
+	public HandScorePoker ScoreHand() {
 		// TODO : Implement this method... call each of the 'is' methods (isRoyalFlush,
 		// etc) until
 		// one of the hands is true, then score the hand
@@ -30,7 +30,7 @@ public class HandPoker extends Hand {
 		Frequency();
 
 		if (isRoyalFlush()) {
-
+			
 		} else if (isStraightFlush()) {
 
 		}
@@ -63,10 +63,8 @@ public class HandPoker extends Hand {
 		return bisFourOfAKind;
 	}
 
-	// TODO : Implement this method
+	// DONE : Implement this method
 	public boolean isFullHouse() {
-		boolean bisFullHouse = false;
-		
 		return ( (isThreeOfAKind() && isPair())); 
 
 	}
@@ -134,16 +132,30 @@ public class HandPoker extends Hand {
 		}
 		return bisThreeOfAKind;
 	}
+	
 
 	public boolean isTwoPair() {
 		boolean bisTwoPair = false;
-		// TODO : Implement this method
+		if (this.getCRC().size() == 2) 
+		{
+			if (this.getCRC().get(0).getiCnt() == 2) {
+				HandScorePoker HSP = (HandScorePoker) this.getHS();
+				HSP.seteHandStrength(eHandStrength.TwoPair);
+				int iGetCard = this.getCRC().get(0).getiCardPosition();
+				HSP.setHiCard(this.getCards().get(iGetCard));
+				HSP.setLoCard(null);
+				HSP.setKickers(FindTheKickers(this.getCRC()));
+				this.setHS(HSP);
+			}
+		}
+		
+		// DONE : Implement this method
 		return bisTwoPair;
 	}
 
 	public boolean isPair() {
 		boolean bisPair = false;
-		// TODO : Implement this method
+		// DONE : Implement this method
 		if (this.getCRC().size() == 2) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
@@ -161,7 +173,7 @@ public class HandPoker extends Hand {
 
 	public boolean isHighCard() {
 		boolean bisHighCard = false;
-		// TODO : Implement this method
+		// DONE : Implement this method
 		if (this.getCRC().size() == 1) {
 			if (this.getCRC().get(0).getiCnt() == Constants.ONE_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
