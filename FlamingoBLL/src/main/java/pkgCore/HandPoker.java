@@ -84,7 +84,7 @@ public class HandPoker extends Hand {
 	// DONE in Master : Implement this method
 	public boolean isFourOfAKind() {
 		boolean bisFourOfAKind = false;
-		if (this.getCRC().size() == 4) {
+		if (this.getCRC().size() == 2) {
 			if (this.getCRC().get(0).getiCnt() == Constants.FOUR_OF_A_KIND) {
 				bisFourOfAKind = true;
 			}
@@ -94,7 +94,9 @@ public class HandPoker extends Hand {
 
 	// DONE : Implement this method
 	public boolean isFullHouse() {
-		return ((isThreeOfAKind() && isPair())); 
+		return (this.getCRC().size() == 2 &&
+				this.getCRC().get(0).getiCnt() == Constants.THREE_OF_A_KIND &&
+				this.getCRC().get(1).getiCnt() == Constants.TWO_OF_A_KIND);
 	}
 
 	public boolean isFlush() {
@@ -130,9 +132,9 @@ public class HandPoker extends Hand {
 			i++;
 		}
 		
-		for(; i <super.getCards().size()-1; i++)
+		for(; i < super.getCards().size()-1; i++)
 		{
-			if(super.getCards().get(i).geteRank().getiCardValue() - 1 != super.getCards().get(i+1).geteRank().getiCardValue())
+			if(super.getCards().get( i).geteRank().getiRankNbr() - 1 != super.getCards().get(i+1).geteRank().getiRankNbr())
 			{
 				bisStraight = false;
 				break;
@@ -157,10 +159,13 @@ public class HandPoker extends Hand {
 
 	public boolean isTwoPair() {
 		boolean bisTwoPair = false;
-		if (this.getCRC().size() == 2) 
+		if (this.getCRC().size() == 3) 
 		{
 			if (this.getCRC().get(0).getiCnt() == 2) {
-				bisTwoPair = true;
+				if (this.getCRC().get(1).getiCnt() == 2)
+				{
+					bisTwoPair = true;
+				}
 			}
 		}
 		
@@ -171,7 +176,7 @@ public class HandPoker extends Hand {
 	public boolean isPair() {
 		boolean bisPair = false;
 		// DONE : Implement this method
-		if (this.getCRC().size() == 2) {
+		if (this.getCRC().size() == 4) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND) {
 				bisPair = true;
 			}
@@ -182,7 +187,7 @@ public class HandPoker extends Hand {
 	public boolean isHighCard() {
 		boolean bisHighCard = false;
 		// DONE : Implement this method
-		if (this.getCRC().size() == 1) {
+		if (this.getCRC().size() == 5) {
 			if (this.getCRC().get(0).getiCnt() == Constants.ONE_OF_A_KIND) {
 				bisHighCard = true;
 			}
