@@ -161,15 +161,12 @@ public class HandPoker extends Hand {
 		boolean bisTwoPair = false;
 		if (this.getCRC().size() == 3) 
 		{
-			if (this.getCRC().get(0).getiCnt() == 2) {
-				if (this.getCRC().get(1).getiCnt() == 2)
+			if (this.getCRC().get(0).getiCnt() == 2 && 
+				this.getCRC().get(1).getiCnt() == 2)
 				{
 					bisTwoPair = true;
 				}
-			}
 		}
-		
-		// DONE : Implement this method
 		return bisTwoPair;
 	}
 
