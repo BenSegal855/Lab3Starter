@@ -28,14 +28,49 @@ public class HandPoker extends Hand {
 
 		Collections.sort(super.getCards());
 		Frequency();
+		
+		HandScorePoker HSP = (HandScorePoker)this.getHS();
 
-		if (isRoyalFlush()) {
-			
-		} else if (isStraightFlush()) {
-
+		if (isRoyalFlush())
+		{
+			HSP.seteHandStrength(eHandStrength.RoyalFlush);
+		} else if (isStraightFlush())
+		{
+			HSP.seteHandStrength(eHandStrength.StraightFlush);
+		} else if (isFourOfAKind())
+		{
+			HSP.seteHandStrength(eHandStrength.FourOfAKind);
+		} else if (isFullHouse())
+		{
+			HSP.seteHandStrength(eHandStrength.FullHouse);
+		} else if (isFlush())
+		{
+			HSP.seteHandStrength(eHandStrength.Flush);
+		} else if (isStraight())
+		{
+			HSP.seteHandStrength(eHandStrength.Straight);
+		} else if (isThreeOfAKind())
+		{
+			HSP.seteHandStrength(eHandStrength.ThreeOfAKind);
+		} else if (isTwoPair())
+		{
+			HSP.seteHandStrength(eHandStrength.TwoPair);
+		} else if (isPair())
+		{
+			HSP.seteHandStrength(eHandStrength.Pair);
+		} else
+		{
+			HSP.seteHandStrength(eHandStrength.HighCard);
 		}
+		
+		// Set the HSP information that is independent of the a hand
+		int iGetCard = this.getCRC().get(0).getiCardPosition();
+		HSP.setHiCard(this.getCards().get(iGetCard));
+		HSP.setLoCard(null);
+		HSP.setKickers(FindTheKickers(this.getCRC()));
+		this.setHS(HSP);
 
-		return null;
+		return (HandScorePoker) this.getHS();
 	}
 
 	public boolean isRoyalFlush() {
