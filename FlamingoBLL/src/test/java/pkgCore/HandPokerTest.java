@@ -25,6 +25,12 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isRoyalFlush(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.RoyalFlush);
+		assertNull(HSP.getHiCard());
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 	
@@ -43,6 +49,12 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isStraightFlush(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.RoyalFlush);
+		assertNull(HSP.getHiCard());
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 
@@ -60,6 +72,12 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isStraightFlush(), true);
+
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.StraightFlush);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.ACE);
+		assertNull(HSP.getKickers());
 		
 		System.out.println("");
 	}
@@ -78,6 +96,13 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isStraightFlush(), true);
+
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.StraightFlush);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.SEVEN);
+		assertNull(HSP.getKickers()
+				);
 		
 		System.out.println("");
 	}
