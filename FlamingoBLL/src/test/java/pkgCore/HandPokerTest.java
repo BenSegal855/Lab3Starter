@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import pkgEnum.eHandStrength;
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
 
@@ -95,6 +96,15 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isFourOfAKind(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.FourOfAKind);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TWO);
+		assertEquals(HSP.getKickers().size(), 1);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.THREE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
+		
+		
 		System.out.println("");
 	}
 	
@@ -111,6 +121,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isFourOfAKind(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.FourOfAKind);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TWO);
+		assertEquals(HSP.getKickers().size(), 1);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.THREE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
 		
 		System.out.println("");
 	}
@@ -129,6 +147,12 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isFullHouse(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.FullHouse);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TWO);
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 	
@@ -146,29 +170,17 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isFullHouse(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.FullHouse);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.SIX);
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 	
 	@Test
 	public void FlushTest1()
-	{
-		System.out.println("Flush");
-		System.out.println("");
-		HandPoker hp = new HandPoker();
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.TEN));
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.JACK));
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.QUEEN));
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.KING));
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.ACE));
-		hp.ScoreHand();
-		
-		assertEquals(hp.isFlush(), true);
-		
-		System.out.println("");
-	}
-	
-	@Test
-	public void FlushTest2()
 	{
 		System.out.println("Flush");
 		System.out.println("");
@@ -182,6 +194,12 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isFlush(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.Flush);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.ACE);
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 	
@@ -193,12 +211,18 @@ public class HandPokerTest {
 		HandPoker hp = new HandPoker();
 		hp.AddCard(new Card(eSuit.CLUBS,eRank.TEN));
 		hp.AddCard(new Card(eSuit.CLUBS,eRank.JACK));
-		hp.AddCard(new Card(eSuit.CLUBS,eRank.QUEEN));
+		hp.AddCard(new Card(eSuit.DIAMONDS,eRank.QUEEN));
 		hp.AddCard(new Card(eSuit.CLUBS,eRank.KING));
 		hp.AddCard(new Card(eSuit.CLUBS,eRank.ACE));
 		hp.ScoreHand();
 		
 		assertEquals(hp.isStraight(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(eHandStrength.Straight, HSP.geteHandStrength());
+		assertEquals(HSP.getHiCard().geteRank(), eRank.ACE);
+		assertNull(HSP.getKickers());
 		
 		System.out.println("");
 	}
@@ -218,6 +242,12 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isStraight(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(eHandStrength.Straight, HSP.geteHandStrength());
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TEN);
+		assertNull(HSP.getKickers());
+		
 		System.out.println("");
 	}
 	
@@ -234,6 +264,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isThreeOfAKind(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.ThreeOfAKind);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TWO);
+		assertEquals(HSP.getKickers().size(), 2);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.FIVE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.SPADES);
 		
 		System.out.println("");
 	}
@@ -252,6 +290,14 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isThreeOfAKind(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.ThreeOfAKind);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TEN);
+		assertEquals(HSP.getKickers().size(), 2);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.EIGHT);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
+		
 		System.out.println("");
 	}
 	
@@ -268,6 +314,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isThreeOfAKind(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.ThreeOfAKind);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.TWO);
+		assertEquals(HSP.getKickers().size(), 2);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.ACE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
 		
 		System.out.println("");
 	}
@@ -286,6 +340,14 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isTwoPair(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.TwoPair);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.FIVE);
+		assertEquals(HSP.getKickers().size(), 1);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.THREE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
+		
 		System.out.println("");
 	}
 	
@@ -302,6 +364,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isTwoPair(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.TwoPair);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.FIVE);
+		assertEquals(HSP.getKickers().size(), 1);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.SIX);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
 		
 		System.out.println("");
 	}
@@ -320,6 +390,14 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isPair(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.Pair);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.FIVE);
+		assertEquals(HSP.getKickers().size(), 3);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.ACE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.SPADES);
+		
 		System.out.println("");
 	}
 	
@@ -336,6 +414,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isPair(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.Pair);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.FOUR);
+		assertEquals(HSP.getKickers().size(), 3);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.ACE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.HEARTS);
 		
 		System.out.println("");
 	}
@@ -354,6 +440,14 @@ public class HandPokerTest {
 		
 		assertEquals(hp.isHighCard(), true);
 		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.HighCard);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.KING);
+		assertEquals(HSP.getKickers().size(), 5);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.KING);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.CLUBS);
+		
 		System.out.println("");
 	}
 	
@@ -370,6 +464,14 @@ public class HandPokerTest {
 		hp.ScoreHand();
 		
 		assertEquals(hp.isHighCard(), true);
+		
+		HandScorePoker HSP = (HandScorePoker) hp.getHS();
+		
+		assertEquals(HSP.geteHandStrength(), eHandStrength.HighCard);
+		assertEquals(HSP.getHiCard().geteRank(), eRank.ACE);
+		assertEquals(HSP.getKickers().size(), 5);
+		assertEquals(HSP.getKickers().get(0).geteRank(), eRank.ACE);
+		assertEquals(HSP.getKickers().get(0).geteSuit(), eSuit.DIAMONDS);
 		
 		System.out.println("");
 	}
